@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audit Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Instagram Audit Report</h1>
+
+    <h3>Business Name</h3>
+    <p>{{ business }}</p>
+
+    <h3>Instagram Username</h3>
+    <p>{{ instagram }}</p>
+
+    <h3>Weak Points</h3>
+    <p>{{ weak_points }}</p>
+
+    <h3>Suggestions</h3>
+    <p>{{ suggestions }}</p>
+
+    <h3>Audit Summary</h3>
+    <p>{{ summary }}</p>
+
+    <br>
+
+    <a href="/">⬅ Create Another Audit</a>
+</div>
+
+</body>
+</html>

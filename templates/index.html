@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Audit Tool</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Instagram Audit Tool</h1>
+
+    <form action="/generate" method="POST">
+
+        <label>Business Name</label><br>
+        <input type="text" name="business" placeholder="Enter Business Name" required><br><br>
+
+        <label>Instagram Username</label><br>
+        <input type="text" name="instagram" placeholder="@username" required><br><br>
+
+        <label>Weak Points</label><br>
+        <textarea name="weak_points" rows="4" placeholder="Enter weak points" required></textarea><br><br>
+
+        <label>Suggestions</label><br>
+        <textarea name="suggestions" rows="4" placeholder="Enter suggestions" required></textarea><br><br>
+
+        <button type="submit">Generate Audit</button>
+
+    </form>
+</div>
+
+</body>
+</html>
