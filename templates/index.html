@@ -3,30 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Instagram Audit Tool</title>
+    <title>B Socio Instagram Audit Tool</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
 <div class="container">
-    <h1>Instagram Audit Tool</h1>
+    <h1>B Socio Instagram Audit Tool</h1>
+    <p class="intro">Create a simple audit report for an Instagram business profile.</p>
 
     <form action="/generate" method="POST">
+        <label>Business Name</label>
+        <input type="text" name="business" placeholder="Enter Business Name" required>
 
-        <label>Business Name</label><br>
-        <input type="text" name="business" placeholder="Enter Business Name" required><br><br>
+        <label>Instagram Username</label>
+        <input type="text" name="instagram" placeholder="@username" required>
 
-        <label>Instagram Username</label><br>
-        <input type="text" name="instagram" placeholder="@username" required><br><br>
+        <label>Business Category</label>
+        <select name="category" required>
+            <option value="">Select Category</option>
+            <option>Cafe</option>
+            <option>Restaurant</option>
+            <option>Salon</option>
+            <option>Boutique</option>
+            <option>Gym</option>
+            <option>Clinic</option>
+            <option>Other</option>
+        </select>
 
-        <label>Weak Points</label><br>
-        <textarea name="weak_points" rows="4" placeholder="Enter weak points" required></textarea><br><br>
+        <label>Business Details</label>
+        <textarea name="business_details" rows="3" placeholder="Describe the business, audience, and current Instagram goal"></textarea>
 
-        <label>Suggestions</label><br>
-        <textarea name="suggestions" rows="4" placeholder="Enter suggestions" required></textarea><br><br>
+        <label>Weak Points</label>
+        <textarea name="weak_points" rows="3" placeholder="Add weak points separated by commas"></textarea>
+
+        <label>Suggestions</label>
+        <textarea name="suggestions" rows="3" placeholder="Add improvement suggestions separated by commas"></textarea>
+
+        <label>Bio</label>
+        <select name="bio" required>
+            <option value="Excellent">Excellent</option>
+            <option value="Average">Average</option>
+            <option value="Needs Improvement">Needs Improvement</option>
+        </select>
+
+        <label>Highlights</label>
+        <select name="highlights" required>
+            <option value="Excellent">Excellent</option>
+            <option value="Average">Average</option>
+            <option value="Needs Improvement">Needs Improvement</option>
+        </select>
+
+        <label>Reels</label>
+        <select name="reels" required>
+            <option value="Excellent">Excellent</option>
+            <option value="Average">Average</option>
+            <option value="Needs Improvement">Needs Improvement</option>
+        </select>
+
+        <label>Branding</label>
+        <select name="branding" required>
+            <option value="Excellent">Excellent</option>
+            <option value="Average">Average</option>
+            <option value="Needs Improvement">Needs Improvement</option>
+        </select>
+
+        <label>CTA (Call To Action)</label>
+        <select name="cta" required>
+            <option value="Excellent">Excellent</option>
+            <option value="Average">Average</option>
+            <option value="Needs Improvement">Needs Improvement</option>
+        </select>
+
+        <label>WhatsApp / Order Flow</label>
+        <select name="whatsapp">
+            <option>Available</option>
+            <option>Not Available</option>
+        </select>
 
         <button type="submit">Generate Audit</button>
-
     </form>
 </div>
 

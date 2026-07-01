@@ -3,32 +3,69 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Audit Result</title>
+    <title>B Socio Audit Report</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
 <div class="container">
-    <h1>Instagram Audit Report</h1>
+    <h1>B Socio Instagram Audit Report</h1>
+    <h2>{{ business }}</h2>
 
-    <h3>Business Name</h3>
-    <p>{{ business }}</p>
+    <p><strong>Instagram:</strong> {{ instagram }}</p>
+    <p><strong>Business Category:</strong> {{ category }}</p>
+    <p><strong>Business Details:</strong> {{ business_details }}</p>
 
-    <h3>Instagram Username</h3>
-    <p>{{ instagram }}</p>
+    <hr>
 
-    <h3>Weak Points</h3>
-    <p>{{ weak_points }}</p>
+    <h2>⭐ Audit Score</h2>
+    <div class="score">{{ score }}/100</div>
 
-    <h3>Suggestions</h3>
-    <p>{{ suggestions }}</p>
+    <hr>
 
-    <h3>Audit Summary</h3>
+    <h2>📊 Overall Rating</h2>
+    <div class="rating">{{ rating }}</div>
+
+    <hr>
+
+    <h2>❌ Improvement Areas</h2>
+    <ul>
+        {% for item in weaknesses %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h2>💡 Suggestions</h2>
+    <ul>
+        {% for item in suggestions %}
+        <li>{{ item }}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h2>💼 Recommended B Socio Services</h2>
+    <ul>
+        {% for service in services %}
+        <li>{{ service }}</li>
+        {% endfor %}
+    </ul>
+
+    <hr>
+
+    <h2>📝 Audit Summary</h2>
     <p>{{ summary }}</p>
 
-    <br>
+    <hr>
 
-    <a href="/">⬅ Create Another Audit</a>
+    <h2>📩 Copy Ready Message</h2>
+    <textarea rows="6" readonly>{{ dm }}</textarea>
+
+    <br><br>
+
+    <a href="/">Create Another Audit</a>
 </div>
 
 </body>
