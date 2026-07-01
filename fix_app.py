@@ -1,4 +1,6 @@
-import json
+from pathlib import Path
+
+content = '''import json
 from datetime import datetime
 from pathlib import Path
 
@@ -217,3 +219,6 @@ def audit_delete(audit_id: int):
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=Config.PORT)
+'''
+Path('app.py').write_text(content, encoding='utf-8')
+print('app.py rewritten')

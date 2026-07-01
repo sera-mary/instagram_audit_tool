@@ -1,0 +1,91 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="card shadow-sm border-0">
+    <div class="card-body p-5">
+        <div class="mb-4">
+            <h1 class="h3 mb-1">Edit Audit</h1>
+            <p class="text-muted mb-0">Update the audit and regenerate the report.</p>
+        </div>
+        <form action="{{ url_for('audit_edit', audit_id=audit.id) }}" method="POST" novalidate>
+            {{ form.hidden_tag() }}
+            <div class="row gx-3">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Business Name</label>
+                    {{ form.business_name(class_='form-control' + (' is-invalid' if form.business_name.errors else '')) }}
+                    {% for error in form.business_name.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label class="form-label">Instagram Username</label>
+                    {{ form.instagram_username(class_='form-control' + (' is-invalid' if form.instagram_username.errors else '')) }}
+                    {% for error in form.instagram_username.errors %}
+                    <div class="invalid-feedback">{{ error }}</div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Business Category</label>
+                {{ form.category(class_='form-select' + (' is-invalid' if form.category.errors else '')) }}
+                {% for error in form.category.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="mb-4">
+                <label class="form-label">Business Details</label>
+                {{ form.business_details(class_='form-control' + (' is-invalid' if form.business_details.errors else ''), rows='4') }}
+                {% for error in form.business_details.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+                {% endfor %}
+            </div>
+            <div class="row gx-3">
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Bio</label>
+                    {{ form.bio(class_='form-select') }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Profile Picture</label>
+                    {{ form.profile_picture(class_='form-select') }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Highlights</label>
+                    {{ form.highlights(class_='form-select') }}
+                </div>
+            </div>
+            <div class="row gx-3">
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Reels</label>
+                    {{ form.reels(class_='form-select') }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Branding</label>
+                    {{ form.branding(class_='form-select') }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">CTA</label>
+                    {{ form.cta(class_='form-select') }}
+                </div>
+            </div>
+            <div class="row gx-3">
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">WhatsApp / Order Flow</label>
+                    {{ form.whatsapp(class_='form-select') }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Posting Consistency</label>
+                    {{ form.posting(class_='form-select') }}
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label class="form-label">Engagement</label>
+                    {{ form.engagement(class_='form-select') }}
+                </div>
+            </div>
+            <div class="d-flex justify-content-between mt-4">
+                <a href="{{ url_for('audit_detail', audit_id=audit.id) }}" class="btn btn-outline-secondary">Cancel</a>
+                {{ form.submit(class_='btn btn-primary') }}
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

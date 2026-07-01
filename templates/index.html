@@ -1,89 +1,134 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B Socio Instagram Audit Tool</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "layout.html" %}
 
-<div class="container">
-    <h1>B Socio Instagram Audit Tool</h1>
-    <p class="intro">Create a simple audit report for an Instagram business profile.</p>
-
-    <form action="/generate" method="POST">
-        <label>Business Name</label>
-        <input type="text" name="business" placeholder="Enter Business Name" required>
-
-        <label>Instagram Username</label>
-        <input type="text" name="instagram" placeholder="@username" required>
-
-        <label>Business Category</label>
-        <select name="category" required>
-            <option value="">Select Category</option>
-            <option>Cafe</option>
-            <option>Restaurant</option>
-            <option>Salon</option>
-            <option>Boutique</option>
-            <option>Gym</option>
-            <option>Clinic</option>
-            <option>Other</option>
-        </select>
-
-        <label>Business Details</label>
-        <textarea name="business_details" rows="3" placeholder="Describe the business, audience, and current Instagram goal"></textarea>
-
-        <label>Weak Points</label>
-        <textarea name="weak_points" rows="3" placeholder="Add weak points separated by commas"></textarea>
-
-        <label>Suggestions</label>
-        <textarea name="suggestions" rows="3" placeholder="Add improvement suggestions separated by commas"></textarea>
-
-        <label>Bio</label>
-        <select name="bio" required>
-            <option value="Excellent">Excellent</option>
-            <option value="Average">Average</option>
-            <option value="Needs Improvement">Needs Improvement</option>
-        </select>
-
-        <label>Highlights</label>
-        <select name="highlights" required>
-            <option value="Excellent">Excellent</option>
-            <option value="Average">Average</option>
-            <option value="Needs Improvement">Needs Improvement</option>
-        </select>
-
-        <label>Reels</label>
-        <select name="reels" required>
-            <option value="Excellent">Excellent</option>
-            <option value="Average">Average</option>
-            <option value="Needs Improvement">Needs Improvement</option>
-        </select>
-
-        <label>Branding</label>
-        <select name="branding" required>
-            <option value="Excellent">Excellent</option>
-            <option value="Average">Average</option>
-            <option value="Needs Improvement">Needs Improvement</option>
-        </select>
-
-        <label>CTA (Call To Action)</label>
-        <select name="cta" required>
-            <option value="Excellent">Excellent</option>
-            <option value="Average">Average</option>
-            <option value="Needs Improvement">Needs Improvement</option>
-        </select>
-
-        <label>WhatsApp / Order Flow</label>
-        <select name="whatsapp">
-            <option>Available</option>
-            <option>Not Available</option>
-        </select>
-
-        <button type="submit">Generate Audit</button>
-    </form>
+{% block content %}
+<div class="row gy-4">
+    <div class="col-xl-8">
+        <div class="card shadow-sm border-0 overflow-hidden">
+            <div class="card-body p-5">
+                <div class="d-flex align-items-center justify-content-between mb-4 flex-column flex-md-row gap-3">
+                    <div>
+                        <h1 class="h2 mb-2">Instagram Audit Dashboard</h1>
+                        <p class="text-muted mb-0">Generate polished Instagram audit reports with instant scoring and profile recommendations.</p>
+                    </div>
+                    <div class="badge bg-primary-soft text-primary py-2 px-3 rounded-pill">Auto score + professional summary</div>
+                </div>
+                <form action="{{ url_for('generate') }}" method="POST" novalidate>
+                    {{ form.hidden_tag() }}
+                    <div class="row gx-3">
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold">Business Name</label>
+                            {{ form.business_name(class_='form-control form-control-lg' + (' is-invalid' if form.business_name.errors else '')) }}
+                            {% for error in form.business_name.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label class="form-label fw-semibold">Instagram Username</label>
+                            {{ form.instagram_username(class_='form-control form-control-lg' + (' is-invalid' if form.instagram_username.errors else '')) }}
+                            {% for error in form.instagram_username.errors %}
+                            <div class="invalid-feedback">{{ error }}</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold">Business Category</label>
+                        {{ form.category(class_='form-select form-select-lg' + (' is-invalid' if form.category.errors else '')) }}
+                        {% for error in form.category.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold">Business Details</label>
+                        {{ form.business_details(class_='form-control form-control-lg' + (' is-invalid' if form.business_details.errors else ''), rows='4') }}
+                        {% for error in form.business_details.errors %}
+                        <div class="invalid-feedback">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+                    <div class="row gx-3">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-semibold">Bio</label>
+                            {{ form.bio(class_='form-select form-select-lg') }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-semibold">Profile Picture</label>
+                            {{ form.profile_picture(class_='form-select form-select-lg') }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-semibold">Highlights</label>
+                            {{ form.highlights(class_='form-select form-select-lg') }}
+                        </div>
+                    </div>
+                    <div class="row gx-3">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-semibold">Reels</label>
+                            {{ form.reels(class_='form-select form-select-lg') }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-semibold">Branding</label>
+                            {{ form.branding(class_='form-select form-select-lg') }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-semibold">CTA</label>
+                            {{ form.cta(class_='form-select form-select-lg') }}
+                        </div>
+                    </div>
+                    <div class="row gx-3">
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-semibold">WhatsApp / Order Flow</label>
+                            {{ form.whatsapp(class_='form-select form-select-lg') }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-semibold">Posting Consistency</label>
+                            {{ form.posting(class_='form-select form-select-lg') }}
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label class="form-label fw-semibold">Engagement</label>
+                            {{ form.engagement(class_='form-select form-select-lg') }}
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-4">
+                        {{ form.submit(class_='btn btn-primary btn-lg px-5') }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <div class="card shadow-sm border-0 mb-4">
+            <div class="card-body p-4">
+                <h5 class="card-title mb-3">Saved Audits</h5>
+                <p class="text-muted mb-4">Review your most recent reports and open them instantly.</p>
+                {% if audits %}
+                <div class="list-group list-group-flush">
+                    {% for audit in audits %}
+                    <a href="{{ url_for('audit_detail', audit_id=audit.id) }}" class="list-group-item list-group-item-action p-3 rounded-4 mb-2">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <strong>{{ audit.business_name }}</strong>
+                                <p class="mb-0 text-muted small">{{ audit.category }}</p>
+                            </div>
+                            <span class="badge bg-primary-soft text-primary">{{ audit.score }}/100</span>
+                        </div>
+                        <p class="mb-0 small text-muted">{{ audit.created_at.strftime('%Y-%m-%d %H:%M') }}</p>
+                    </a>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-muted mb-0">No audits created yet.</p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h5 class="card-title mb-3">Why this tool?</h5>
+                <ul class="list-unstyled mb-0">
+                    <li class="mb-3">✅ Automatic score and weaknesses analysis</li>
+                    <li class="mb-3">✅ Service recommendation engine</li>
+                    <li class="mb-3">✅ Professional report layout</li>
+                    <li class="mb-3">✅ SQLite persistence and edit support</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>
-
-</body>
-</html>
+{% endblock %}

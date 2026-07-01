@@ -1,72 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>B Socio Audit Report</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-</head>
-<body>
+{% extends "layout.html" %}
 
-<div class="container">
-    <h1>B Socio Instagram Audit Report</h1>
-    <h2>{{ business }}</h2>
-
-    <p><strong>Instagram:</strong> {{ instagram }}</p>
-    <p><strong>Business Category:</strong> {{ category }}</p>
-    <p><strong>Business Details:</strong> {{ business_details }}</p>
-
-    <hr>
-
-    <h2>⭐ Audit Score</h2>
-    <div class="score">{{ score }}/100</div>
-
-    <hr>
-
-    <h2>📊 Overall Rating</h2>
-    <div class="rating">{{ rating }}</div>
-
-    <hr>
-
-    <h2>❌ Improvement Areas</h2>
-    <ul>
-        {% for item in weaknesses %}
-        <li>{{ item }}</li>
-        {% endfor %}
-    </ul>
-
-    <hr>
-
-    <h2>💡 Suggestions</h2>
-    <ul>
-        {% for item in suggestions %}
-        <li>{{ item }}</li>
-        {% endfor %}
-    </ul>
-
-    <hr>
-
-    <h2>💼 Recommended B Socio Services</h2>
-    <ul>
-        {% for service in services %}
-        <li>{{ service }}</li>
-        {% endfor %}
-    </ul>
-
-    <hr>
-
-    <h2>📝 Audit Summary</h2>
-    <p>{{ summary }}</p>
-
-    <hr>
-
-    <h2>📩 Copy Ready Message</h2>
-    <textarea rows="6" readonly>{{ dm }}</textarea>
-
-    <br><br>
-
-    <a href="/">Create Another Audit</a>
+{% block content %}
+<div class="row gy-4">
+    <div class="col-xl-8">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-5">
+                <div class="d-flex justify-content-between align-items-start mb-4">
+                    <div>
+                        <span class="badge bg-primary mb-2">Audit Report</span>
+                        <h1 class="h3 mb-1">{{ audit.business_name }}</h1>
+                        <p class="text-muted mb-0">{{ audit.category }} · {{ audit.instagram_username }}</p>
+                    </div>
+                    <div class="text-end">
+                        <h2 class="mb-1">{{ audit.score }}/100</h2>
+                        <div class="text-muted">{{ rating }}</div>
+                    </div>
+                </div>
+                <div class="row g-3 mb-4">
+                    <div class="col-md-4">
+                        <div class="card border-0 bg-light p-3 h-100">
+                            <small class="text-uppercase text-muted">Audit Date</small>
+                            <div class="fw-semibold mt-2">{{ audit.created_at.strftime('%Y-%m-%d %H:%M') }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 bg-light p-3 h-100">
+                            <small class="text-uppercase text-muted">Category</small>
+                            <div class="fw-semibold mt-2">{{ audit.category }}</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card border-0 bg-light p-3 h-100">
+                            <small class="text-uppercase text-muted">Services</small>
+                            <div class="fw-semibold mt-2">{{ audit.services_list() | join(', ') }}</div>
+                        </div>
+                    </div>
+                </div>
+                <h5 class="mb-3">Section Scores</h5>
+                <div class="row gy-3">
+                    {% for section, value in section_scores.items() %}
+                    <div class="col-md-6">
+                        <div class="card border-0 shadow-sm p-3">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <div>{{ section }}</div>
+                                <div class="fw-semibold">{{ value }}/{{ 15 if section in ['Reels', 'Branding'] else 10 }}</div>
+                            </div>
+                            {% set max_score = 15 if section in ['Reels', 'Branding'] else 10 %}
+                            {% set width = (value / max_score) * 100 %}
+                            <div class="progress rounded-pill bg-soft">
+                                <div class="progress-bar" role="progressbar" data-width="{{ width|round(1) }}" aria-valuenow="{{ width|round(1) }}" aria-valuemin="0" aria-valuemax="100"></div>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <div class="row gy-4 mt-4">
+                    <div class="col-md-6">
+                        <h5>Strengths</h5>
+                        <ul class="list-group list-group-flush rounded shadow-sm overflow-hidden">
+                            {% for item in audit.strengths_list() %}
+                            <li class="list-group-item">{{ item }}</li>
+                            {% else %}
+                            <li class="list-group-item text-muted">No clear strengths detected yet.</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Weaknesses</h5>
+                        <ul class="list-group list-group-flush rounded shadow-sm overflow-hidden">
+                            {% for item in audit.weaknesses_list() %}
+                            <li class="list-group-item">{{ item }}</li>
+                            {% else %}
+                            <li class="list-group-item text-muted">No critical weaknesses detected.</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <h5>Recommended Improvements</h5>
+                    <ol class="ps-3">
+                        {% for item in audit.recommendations_list() %}
+                        <li class="mb-2">{{ item }}</li>
+                        {% else %}
+                        <li class="text-muted">No automated recommendations available.</li>
+                        {% endfor %}
+                    </ol>
+                </div>
+                <div class="mt-4">
+                    <h5>Audit Summary</h5>
+                    <div class="summary-box p-4 bg-white rounded shadow-sm">{{ audit.summary }}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-4">
+        <div class="card shadow-sm border-0">
+            <div class="card-body p-4">
+                <h5 class="mb-3">Next Action Plan</h5>
+                <p class="text-muted">Use the recommendations to improve the profile and pitch your services.</p>
+                <div class="mb-4">
+                    {% for service in audit.services_list() %}
+                    <span class="badge bg-primary rounded-pill me-1 mb-2">{{ service }}</span>
+                    {% endfor %}
+                </div>
+                <h6 class="mb-2">Copy-ready WhatsApp message</h6>
+                <textarea id="dmText" class="form-control mb-3" rows="6" readonly>{{ audit.dm }}</textarea>
+                <button class="btn btn-outline-primary w-100 mb-3" type="button" onclick="copyText('dmText')">Copy Message</button>
+                <a href="{{ url_for('audits_list') }}" class="btn btn-soft-secondary w-100 mb-2">View All Audits</a>
+                <a href="{{ url_for('audit_edit', audit_id=audit.id) }}" class="btn btn-outline-secondary w-100">Edit Audit</a>
+            </div>
+        </div>
+    </div>
 </div>
-
-</body>
-</html>
+{% endblock %}
