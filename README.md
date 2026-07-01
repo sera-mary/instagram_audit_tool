@@ -84,23 +84,23 @@ http://127.0.0.1:5000
 
 ### Home Page
 
-![Home Page](Screenshots/home.png)
+![Home Page](Screenshots/auditform1.png)
 
 ### Filled Form
 
-![Filled Form](Screenshots/form.png)
+![Filled Form](Screenshots/auditform2.png)
 
 ### Audit Report (Top)
 
-![Audit Report Top](Screenshots/resulttop.png)
+![Audit Report Top](Screenshots/auditform3.png)
 
 ### Audit Report (Middle)
 
-![Audit Report Middle](Screenshots/result_middle.png)
+![Audit Report Middle](Screenshots/auditform4.png)
 
 ### Audit Report (Bottom)
 
-![Audit Report Bottom](Screenshots/resultbottom.png)
+![Audit Report Bottom](Screenshots/auditform5.png)
 
 ## Sample Workflow
 
