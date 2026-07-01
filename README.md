@@ -1,5 +1,7 @@
 # B Socio Instagram Audit Tool
 
+[![Python application](./.github/workflows/python-app.yml/badge.svg)](https://github.com/sera-mary/instagram_audit_tool/actions/workflows/python-app.yml)
+
 ## Project Overview
 
 The B Socio Instagram Audit Tool is a Flask-based web application that helps evaluate an Instagram business profile. Users can enter business details, assess different profile elements, and generate a professional audit report with an overall score and recommendations.
