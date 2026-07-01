@@ -80,6 +80,27 @@ http://127.0.0.1:5000
 ```
 
 ---
+## Screenshots
+
+### Home Page
+
+![Home Page](Screenshots/home.png)
+
+### Filled Form
+
+![Filled Form](Screenshots/form.png)
+
+### Audit Report (Top)
+
+![Audit Report Top](Screenshots/resulttop.png)
+
+### Audit Report (Middle)
+
+![Audit Report Middle](Screenshots/result middle.png)
+
+### Audit Report (Bottom)
+
+![Audit Report Bottom](Screenshots/resultbottom.png)
 
 ## Sample Workflow
 
