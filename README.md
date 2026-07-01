@@ -96,7 +96,7 @@ http://127.0.0.1:5000
 
 ### Audit Report (Middle)
 
-![Audit Report Middle](Screenshots/resultmiddle.png)
+![Audit Report Middle](Screenshots/result_middle.png)
 
 ### Audit Report (Bottom)
 
