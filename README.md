@@ -68,7 +68,7 @@ The current app includes the following working workflow screenshots:
 ### Home Page
 ![Home Page](Screenshots/Dashboard1.png)
 
-### Home Page (Filled Form)
+### Home Page 2
 ![Home Page 2](Screenshots/Dashboard2.png)
 
 ### Filled Form
