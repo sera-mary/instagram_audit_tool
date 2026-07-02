@@ -10,9 +10,11 @@
                         <h1 class="h2 mb-2">Instagram Audit Dashboard</h1>
                         <p class="text-muted mb-0">Generate polished Instagram audit reports with instant scoring and profile recommendations.</p>
                     </div>
-                    <div class="badge bg-primary-soft text-primary py-2 px-3 rounded-pill">Auto score + professional summary</div>
+                    <button type="submit" form="audit-form" class="btn btn-outline-primary rounded-pill px-3 py-2">
+                        Auto score + professional summary
+                    </button>
                 </div>
-                <form action="{{ url_for('generate') }}" method="POST" novalidate>
+                <form id="audit-form" action="{{ url_for('generate') }}" method="POST" novalidate>
                     {{ form.hidden_tag() }}
                     <div class="row gx-3">
                         <div class="col-md-6 mb-3">
