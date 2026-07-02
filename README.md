@@ -63,13 +63,28 @@ python app.py
 
 The current app includes the following working workflow screenshots:
 
-- Home page: [Screenshots/Dashboard1.png](Screenshots/Dashboard1.png)
-- Home Page: [Screenshots/Dashboard2.png](Screenshots/Dashboard2.png)
-- Audit report view: [Screenshots/filledform.png](Screenshots/filledform.png)
-- Audit report view: [Screenshots/filledform2.png](Screenshots/filledform2.png)
-- Audit report view: [Screenshots/result.png](Screenshots/result.png)
-- Audit report view: [Screenshots/result2.png](Screenshots/result2.png)
-- Audit report view: [Screenshots/result3.png](Screenshots/result3.png)
+## Screenshots
+
+### Home Page
+![Home Page](Screenshots/Dashboard1.png)
+
+### Home Page (Filled Form)
+![Home Page 2](Screenshots/Dashboard2.png)
+
+### Filled Form
+![Filled Form](Screenshots/filledform.png)
+
+### Filled Form 2
+![Filled Form 2](Screenshots/filledform2.png)
+
+### Result
+![Result](Screenshots/result.png)
+
+### Result 2
+![Result 2](Screenshots/result2.png)
+
+### Result 3
+![Result 3](Screenshots/result3.png)
 
 ## Sample workflow
 
