@@ -75,6 +75,7 @@ def create_app():
     app = Flask(__name__, static_folder="static", template_folder="templates")
     app.config.from_object(Config)
     db.init_app(app)
+    app.jinja_env.globals["now"] = datetime.utcnow
 
     with app.app_context():
         sqlite_path = get_sqlite_path(app.config["SQLALCHEMY_DATABASE_URI"])
@@ -145,7 +146,7 @@ def index():
 
 @app.route("/generate", methods=["POST"])
 def generate():
-    form = AuditForm()
+    form = AuditForm(request.form)
     audits = Audit.query.order_by(Audit.created_at.desc()).limit(10).all()
 
     if form.validate_on_submit():
@@ -177,7 +178,7 @@ def audit_detail(audit_id: int):
 @app.route("/audit/<int:audit_id>/edit", methods=["GET", "POST"])
 def audit_edit(audit_id: int):
     audit = get_audit_or_404(audit_id)
-    form = AuditForm()
+    form = AuditForm(request.form if request.method == "POST" else None)
 
     if request.method == "GET":
         populate_form(form, audit)

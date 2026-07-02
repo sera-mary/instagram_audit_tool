@@ -1,131 +1,81 @@
 # B Socio Instagram Audit Tool
 
-[![Python application](./.github/workflows/python-app.yml/badge.svg)](https://github.com/sera-mary/instagram_audit_tool/actions/workflows/python-app.yml)
-
 ## Project Overview
 
-The B Socio Instagram Audit Tool is a Flask-based web application that helps evaluate an Instagram business profile. Users can enter business details, assess different profile elements, and generate a professional audit report with an overall score and recommendations.
+The B Socio Instagram Audit Tool is a Flask web app for reviewing Instagram business profiles. It collects business and profile details, calculates a score out of 100, and generates a professional audit report with service recommendations and a copy-ready client message.
 
----
+## What the app does
 
-## Features
+- Collects business name, Instagram handle, category, and profile context
+- Scores profile strength across bio, visuals, content, branding, CTA, order flow, consistency, and engagement
+- Generates a polished report with strengths, weaknesses, recommendations, and suggested B Socio services
+- Saves audits in a SQLite database and lets users view, edit, and delete previous reports
 
-- Business Information Form
-- Instagram Profile Evaluation
-- Business Category Selection
-- Audit Score (0–100)
-- Overall Rating
-- Improvement Areas
-- Suggestions
-- Recommended B Socio Services
-- Audit Summary
-- Copy-Ready Client Message
-- Clean and Responsive User Interface
-
----
-
-## Technologies Used
+## Tech stack
 
 - Python
 - Flask
-- HTML5
-- CSS3
+- Flask-WTF
+- WTForms
+- Flask-SQLAlchemy
+- SQLite
+- Bootstrap
 
----
+## Project structure
 
-## Project Structure
-
-```
+```text
 instagram_audit_tool2/
-│
 ├── app.py
+├── audit_utils.py
+├── config.py
+├── forms.py
+├── models.py
 ├── requirements.txt
-├── README.md
-├── .gitignore
-│
 ├── static/
 │   └── style.css
-│
 ├── templates/
 │   ├── index.html
-│   └── result.html
+│   ├── result.html
+│   ├── edit.html
+│   └── layout.html
+└── Screenshots/
 ```
-
----
 
 ## Installation
 
 1. Clone the repository
+2. Create and activate a virtual environment
+3. Install the dependencies
 
-```
-git clone <repository-link>
-```
-
-2. Open the project folder
-
-3. Install dependencies
-
-```
+```bash
 pip install -r requirements.txt
 ```
 
-4. Run the application
+4. Run the app
 
-```
-py app.py
-```
-
-5. Open your browser
-
-```
-http://127.0.0.1:5000
+```bash
+python app.py
 ```
 
----
+5. Open the app in your browser at http://127.0.0.1:5000
+
 ## Screenshots
 
-### Home Page
+The current app includes the following working workflow screenshots:
 
-![Home Page](Screenshots/auditform1.png)
+- Home page: [Screenshots/auditform1.png](Screenshots/auditform1.png)
+- Filled form: [Screenshots/auditform2.png](Screenshots/auditform2.png)
+- Audit report view: [Screenshots/auditform3.png](Screenshots/auditform3.png)
+- Audit report view: [Screenshots/auditform4.png](Screenshots/auditform4.png)
+- Audit report view: [Screenshots/auditform5.png](Screenshots/auditform5.png)
 
-### Filled Form
+## Sample workflow
 
-![Filled Form](Screenshots/auditform2.png)
-
-### Audit Report (Top)
-
-![Audit Report Top](Screenshots/auditform3.png)
-
-### Audit Report (Middle)
-
-![Audit Report Middle](Screenshots/auditform4.png)
-
-### Audit Report (Bottom)
-
-![Audit Report Bottom](Screenshots/auditform5.png)
-
-## Sample Workflow
-
-1. Enter Business Name
-2. Enter Instagram Username
-3. Select Business Category
-4. Enter Business Details
-5. Add Weak Points
-6. Add Suggestions
-7. Select Profile Ratings
-8. Click **Generate Audit**
-9. View the generated report
-
----
-
-## Future Improvements
-
-- PDF Report Export
-- AI-powered Audit Suggestions
-- Dashboard Analytics
-- Instagram API Integration
-
----
+1. Enter the business name and Instagram username
+2. Select a category and describe the business
+3. Rate the profile elements in the form
+4. Click Generate Audit
+5. Review the score out of 100, recommendations, and the copy-ready DM
 
 ## Author
 
